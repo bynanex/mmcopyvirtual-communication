@@ -1,0 +1,1 @@
+compiled binaries are in MmCopyVirtual Communication\x64\release

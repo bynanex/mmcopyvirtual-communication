@@ -1,0 +1,23 @@
+﻿  Building 'KMDF Driver1' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping Debug\KMDFDriver1.inf
+  Stamping [Version] section with DriverVer=04/25/2020,20.43.51.366
+  Driver.cpp
+  KMDF Driver1.vcxproj -> C:\Users\jguo5\source\repos\MmCopyVirtual Communication\Debug\KMDFDriver1.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\jguo5\source\repos\MmCopyVirtual Communication\Debug\KMDFDriver1.sys
+  
+  Driver is a Universal Driver.
+  .........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Users\jguo5\source\repos\MmCopyVirtual Communication\Debug\KMDF Driver1\kmdfdriver1.cat
+  Done Adding Additional Store
+  Successfully signed: C:\Users\jguo5\source\repos\MmCopyVirtual Communication\Debug\KMDF Driver1\kmdfdriver1.cat
+  

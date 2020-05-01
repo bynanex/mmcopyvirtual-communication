@@ -1,0 +1,31 @@
+﻿  Building 'KMDF Driver1' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Release\KMDFDriver1.inf
+  Stamping [Version] section with DriverVer=05/01/2020,16.32.45.511
+  Driver.cpp
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\Undocumented.h(383,1): warning C4141: 'dllimport': used more than once
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(12,1): warning C4005: 'STANDARD_RIGHTS_ALL': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(5208): message : see previous definition of 'STANDARD_RIGHTS_ALL'
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(68,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(215,10): warning C4244: 'return': conversion from 'NTSTATUS' to 'BOOLEAN', possible loss of data
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(319,10): warning C4189: 'cleared': local variable is initialized but not referenced
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(320,10): warning C4189: 'Filled': local variable is initialized but not referenced
+C:\Users\jguo5\source\repos\MmCopyVirtual Communication\KMDF Driver1\Driver.cpp(70,9): warning C4101: 'bytes': unreferenced local variable
+  KMDF Driver1.vcxproj -> C:\Users\jguo5\source\repos\MmCopyVirtual Communication\x64\Release\KMDFDriver1.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\jguo5\source\repos\MmCopyVirtual Communication\x64\Release\KMDFDriver1.sys
+  
+  Driver is a Universal Driver.
+  ........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Users\jguo5\source\repos\MmCopyVirtual Communication\x64\Release\KMDF Driver1\kmdfdriver1.cat
+  Done Adding Additional Store
+  Successfully signed: C:\Users\jguo5\source\repos\MmCopyVirtual Communication\x64\Release\KMDF Driver1\kmdfdriver1.cat
+  

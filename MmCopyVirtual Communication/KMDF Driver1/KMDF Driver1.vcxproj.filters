@@ -27,9 +27,6 @@
     <ClCompile Include="Driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="apexHaaax.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Undocumented.h">
@@ -38,11 +35,11 @@
     <ClInclude Include="ProcessUtilities.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PiDDBandMMunload.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="apexHaaax.h">
       <Filter>Driver Files\Resource Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PiddbMmunload.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

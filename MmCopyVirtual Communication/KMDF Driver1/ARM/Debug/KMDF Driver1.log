@@ -1,0 +1,106 @@
+﻿  Building 'KMDF Driver1' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping ARM\Debug\KMDFDriver1.inf
+  Stamping [Version] section with DriverVer=05/01/2020,17.5.4.672
+  apexHaaax.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18707,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18718,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18732,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18746,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18760,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18775,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18790,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18804,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18818,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18832,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18847,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18862,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18877,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19074,22): error C2065: 'CP15_TPIDRPRW': undeclared identifier
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19074,22): error C3861: '_MoveFromCoprocessor': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19105,5): error C3861: '_ReadWriteBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19106,5): error C3861: 'MemoryBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(22605,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(24864,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(27238,9): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(27241,9): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31407,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31594,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31939,40): error C3861: 'InterlockedExchangePointer': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31988,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(32046,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(32112,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(35971,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(35996,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36025,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36053,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36075,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36093,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36118,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36141,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36159,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\Undocumented.h(388,1): warning C4141: 'dllimport': used more than once
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(58,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(136,79): error C2065: 'IMAGE_SCN_CNT_CODE': undeclared identifier
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(136,131): error C2065: 'IMAGE_SCN_MEM_EXECUTE': undeclared identifier
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(322,14): warning C4244: 'argument': conversion from 'ULONG64' to 'unsigned int', possible loss of data
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(334,14): warning C4244: 'argument': conversion from 'ULONG64' to 'unsigned int', possible loss of data
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(118,1): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(152,6): error C2672: 'Write': no matching overloaded function found
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(152,1): error C2780: 'void Write(ULONG64,T,PEPROCESS)': expects 3 arguments - 2 provided
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(350): message : see declaration of 'Write'
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(154,5): error C2672: 'Write': no matching overloaded function found
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(154,1): error C2780: 'void Write(ULONG64,T,PEPROCESS)': expects 3 arguments - 2 provided
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(350): message : see declaration of 'Write'
+  Driver.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18707,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18718,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18732,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18746,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18760,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18775,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18790,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18804,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18818,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18832,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18847,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18862,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(18877,5): error C3861: '_DataSynchronizationBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19074,22): error C2065: 'CP15_TPIDRPRW': undeclared identifier
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19074,22): error C3861: '_MoveFromCoprocessor': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19105,5): error C3861: '_ReadWriteBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(19106,5): error C3861: 'MemoryBarrier': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(22605,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(24864,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(27238,9): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(27241,9): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31407,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31594,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31939,40): error C3861: 'InterlockedExchangePointer': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(31988,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(32046,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(32112,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(35971,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(35996,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36025,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36053,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36075,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36093,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36118,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36141,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(36159,5): error C3861: 'DbgRaiseAssertionFailure': identifier not found
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\Undocumented.h(388,1): warning C4141: 'dllimport': used more than once
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(58,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(136,79): error C2065: 'IMAGE_SCN_CNT_CODE': undeclared identifier
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(136,131): error C2065: 'IMAGE_SCN_MEM_EXECUTE': undeclared identifier
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(322,14): warning C4244: 'argument': conversion from 'ULONG64' to 'unsigned int', possible loss of data
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(334,14): warning C4244: 'argument': conversion from 'ULONG64' to 'unsigned int', possible loss of data
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(12,1): warning C4005: 'STANDARD_RIGHTS_ALL': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\km\wdm.h(5208): message : see previous definition of 'STANDARD_RIGHTS_ALL'
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\PiDDBandMMunload.h(55,10): warning C4244: 'return': conversion from 'NTSTATUS' to 'BOOLEAN', possible loss of data
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(118,1): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(152,6): error C2672: 'Write': no matching overloaded function found
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(152,1): error C2780: 'void Write(ULONG64,T,PEPROCESS)': expects 3 arguments - 2 provided
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(350): message : see declaration of 'Write'
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(154,5): error C2672: 'Write': no matching overloaded function found
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\apexHaaax.h(154,1): error C2780: 'void Write(ULONG64,T,PEPROCESS)': expects 3 arguments - 2 provided
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\KMDF Driver1\ProcessUtilities.h(350): message : see declaration of 'Write'

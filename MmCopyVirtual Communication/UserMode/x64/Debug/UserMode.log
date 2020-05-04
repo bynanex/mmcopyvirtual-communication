@@ -1,0 +1,3 @@
+﻿  UserMode.cpp
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\UserMode\UserMode.cpp(113,23): error C2561: 'CommandHandler': function must return a value
+C:\Users\jguo5\OneDrive\Documents\GitHub\goodApexExternal\MmCopyVirtual Communication\UserMode\UserMode.cpp(39): message : see declaration of 'CommandHandler'

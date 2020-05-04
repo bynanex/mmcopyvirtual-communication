@@ -1,7 +1,6 @@
-#include "Undocumented.h"
-#include "ProcessUtilities.h"
-#include "PiDDBandMMunload.h"
 #include "apexHaaax.h"
+#include "ProcessUtilities.h"
+#include "PiddbMmunload.h"
 
 struct communicationStruct
 {
@@ -74,7 +73,7 @@ void DriverLoop()
 
 	DWORD64 structLocation = READ<DWORD64>(clientBaseAddress + structOffset, clientProcess);
 
-	apexHaaax haaax;
+	apexHaaax haaax(1);
 	bool aimbot = false;
 
 	while (1)
@@ -127,7 +126,7 @@ void DriverLoop()
 				DbgPrint("Write Request\n");
 				break;
 			case 4:
-				haaax.enableGlow();
+				haaax.enableGlow();		//Only player glow for now
 				break;
 			case 5:
 				aimbot = !aimbot;
@@ -160,6 +159,9 @@ void DriverLoop()
 
 
 
+
+
+
 extern "C"
 NTSTATUS DriverEntry(_In_ _DRIVER_OBJECT *DriverObject, _In_ PUNICODE_STRING RegistryPath)
 {
@@ -167,18 +169,25 @@ NTSTATUS DriverEntry(_In_ _DRIVER_OBJECT *DriverObject, _In_ PUNICODE_STRING Reg
 	NTSTATUS Status = STATUS_SUCCESS;
 	BOOLEAN ClearStatus;
 
+
+
 	ClearStatus = ClearPiddbCacheTable();
 	if (ClearStatus == FALSE)
 	{
 		DbgPrint("PiDDB clear fail ! ! !\n");
 		return Status;
 	}
+
+
 	ClearStatus = cleanUnloadedDriverString();
 	if (ClearStatus == FALSE)
 	{
 		DbgPrint("MMunload clear fail ! ! !\n");
 		return Status;
 	}
+
+
+
 	UNREFERENCED_PARAMETER(DriverObject);
 	UNREFERENCED_PARAMETER(RegistryPath);
 	DriverLoop();

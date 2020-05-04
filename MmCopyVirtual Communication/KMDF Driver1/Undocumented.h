@@ -9,6 +9,11 @@
 
 #define IMAGE_NUMBEROF_DIRECTORY_ENTRIES        16
 
+#define FLT_MAX         3.402823466e+38F       /* max value */
+extern "C" int _fltused = 0;
+
+
+
 extern "C" __declspec(dllimport)
 NTSTATUS NTAPI MmCopyVirtualMemory
 (

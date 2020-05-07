@@ -2,84 +2,86 @@
 #include "ProcessUtilities.h"
 
 
-extern "C" {
-	float __sqrtf(float);
-	float __sinf(float);
-	float __cosf(float);
-	float __tanf(float);
-	float __atan2f(float, float);
-};
 
+//playerAimData [61] is going to be localplayer
+
+struct playerAimData
+{
+	float xyz[3];
+	float viewAngles[2];
+	int teamNum;
+	bool dataArrived;
+	bool KernelDataArrived;
+};
+playerAimData* playerArray;
+
+
+
+HANDLE	GetProcessPIDapex()
+{
+	auto				Status = STATUS_SUCCESS;
+	UNICODE_STRING		ClientName = { 0 };
+	HANDLE				processID = nullptr;
+	PVOID				SystemProcessInfo = nullptr;
+	DWORD				buffer_size = NULL;
+
+
+
+	RtlInitUnicodeString(&ClientName, L"r5apex.exe");
+	Status = ZwQuerySystemInformation(SystemProcessInformation, SystemProcessInfo, 0, &buffer_size);
+	while (Status == STATUS_INFO_LENGTH_MISMATCH)
+	{
+		if (SystemProcessInfo)	ExFreePool(SystemProcessInfo);
+		SystemProcessInfo = ExAllocatePool(NonPagedPool, buffer_size);
+		Status = ZwQuerySystemInformation(SystemProcessInformation, SystemProcessInfo, buffer_size, &buffer_size);
+	}
+	auto	ProcessInformation = static_cast<PSYSTEM_PROCESS_INFORMATION>(SystemProcessInfo);
+	for (;;)
+	{
+
+		if (FsRtlIsNameInExpression(&ClientName, &(ProcessInformation->ImageName), FALSE, NULL) == TRUE)
+		{
+			processID = ProcessInformation->ProcessId;
+			break;
+		}
+
+		if (ProcessInformation->NextEntryOffset == 0)
+		{
+			break;
+		}
+		ProcessInformation = (PSYSTEM_PROCESS_INFORMATION)(((PUCHAR)ProcessInformation) + ProcessInformation->NextEntryOffset);
+	}
+	ExFreePool(SystemProcessInfo);
+	return processID;
+
+}
+
+
+
+
+
+
+PEPROCESS	gameProcess;
 class apexHaaax
 {
 public:
 
 	DWORD64		OFFSET_ENTITYLIST = 0x1897F38;		// Will be sig scanned
+	DWORD64		OFFSET_LOCALPLAYER = 1231312313;	//needs fix 
 	DWORD64		OFFSET_GLOW_ENABLE = 0x390;
 	DWORD64		OFFSET_GLOW_CONTEXT = 0x310;
 	DWORD64 	OFFSET_GLOW_RANGE = 0x2FC;
 	DWORD64		OFFSET_GLOW_COLORS = 0x1D0;
 	DWORD64		OFFSET_GLOW_DURATION = 0x2D0;
-	DWORD64		OFFSET_GLOW_MAGIC = 0x278;
 	DWORD64		OFFSET_HEALTH = 0x3E0;
-	DWORD64		OFFSET_TEAMNUM = 0x999;
+	DWORD64		OFFSET_TEAMNUM = 0x999; // needs fix
+	DWORD64		OFFSET_VIEWANGLES = 12321; // needs fix
+	DWORD64		OFFSET_XYZLOCATION = 12321; //NEEDS FIX
+
 
 
 	HANDLE		ProcessID;
-	PEPROCESS	gameProcess;
 	DWORD64		BaseAddress;
-
-
-	DWORD64		playerArray[60];	// array of entity pointers
-
-
-
-
-
-
-	HANDLE	GetProcessPIDapex()
-	{
-		auto				Status = STATUS_SUCCESS;
-		UNICODE_STRING		ClientName = { 0 };
-		HANDLE				processID = nullptr;
-		PVOID				SystemProcessInfo = nullptr;
-		DWORD				buffer_size = NULL;
-
-
-
-		RtlInitUnicodeString(&ClientName, L"r5apex.exe");
-		Status = ZwQuerySystemInformation(SystemProcessInformation, SystemProcessInfo, 0, &buffer_size);
-		while (Status == STATUS_INFO_LENGTH_MISMATCH)
-		{
-			if (SystemProcessInfo)	ExFreePool(SystemProcessInfo);
-			SystemProcessInfo = ExAllocatePool(NonPagedPool, buffer_size);
-			Status = ZwQuerySystemInformation(SystemProcessInformation, SystemProcessInfo, buffer_size, &buffer_size);
-		}
-		auto	ProcessInformation = static_cast<PSYSTEM_PROCESS_INFORMATION>(SystemProcessInfo);
-		for (;;)
-		{
-
-			if (FsRtlIsNameInExpression(&ClientName, &(ProcessInformation->ImageName), FALSE, NULL) == TRUE)
-			{
-				processID = ProcessInformation->ProcessId;
-				break;
-			}
-
-			if (ProcessInformation->NextEntryOffset == 0)
-			{
-				break;
-			}
-			ProcessInformation = (PSYSTEM_PROCESS_INFORMATION)(((PUCHAR)ProcessInformation) + ProcessInformation->NextEntryOffset);
-		}
-		ExFreePool(SystemProcessInfo);
-		return processID;
-
-	}
-
-
-
-
-
 
 
 
@@ -118,12 +120,14 @@ public:
 		/*-------------------Get Base Address--------------------------*/
 		UNICODE_STRING programImage;
 		RtlInitUnicodeString(&programImage, L"r5apex.exe");
+
+
+
+
 		KAPC_STATE apc;
 		KeStackAttachProcess(gameProcess, &apc);
 		BaseAddress = (ULONG64)GetUserModule(gameProcess, &programImage, isWow64); //BSOD problem line
 		DbgPrint("Base Address is: %p \n", BaseAddress);
-
-
 
 
 
@@ -135,14 +139,17 @@ public:
 
 
 
-
 		OFFSET_ENTITYLIST = (ULONG64)ResolveRelativeAddress((PVOID)Entity1, 10, 14);
 		OFFSET_ENTITYLIST -= BaseAddress;
 		DbgPrint("Entitylist offset is: %i ", OFFSET_ENTITYLIST);
 
 
-
 		KeUnstackDetachProcess(&apc);
+
+
+		playerArray = (playerAimData*)ExAllocatePool(PagedPool, sizeof(sizeof(playerAimData) * 61)); // space for 61 ents
+
+
 
 	}// constructor will scan for sigs
 
@@ -189,40 +196,49 @@ public:
 	{
 		// PEPROCESS should already be found
 		DWORD64 entAddress;
-		float ViewAngles[3];
+
+		int i = 0;
+		int j = 0;
+		int health;
+		int teamNum;
+		int localTeamNum;
+		int realNumOfPlayers;
+		DWORD64 localPlayerAddress = READ<DWORD64>(BaseAddress + OFFSET_LOCALPLAYER, gameProcess);
+		
 
 
-		for (int i = 0; i < 60; ++i)
+		playerArray[61].xyz[1] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION, gameProcess);
+		playerArray[61].xyz[2] = READ<float>(localPlayerAddress	+ OFFSET_XYZLOCATION + 0X4, gameProcess);
+		playerArray[61].xyz[3] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION + 0X8, gameProcess);
+
+		while (i < 60)
 		{
-			entAddress = READ<ULONG64>(BaseAddress + OFFSET_ENTITYLIST + (i << 5), gameProcess);
+
+			entAddress = READ<DWORD64>(BaseAddress + OFFSET_ENTITYLIST + (i << 5), gameProcess);
+			health = READ<int>(entAddress + OFFSET_HEALTH, gameProcess);
 
 
-			if (READ<int>(entAddress + OFFSET_HEALTH, gameProcess) > 0)
+			if (health > 0)
 			{
-			//	if (READ<int>(entAddress + OFFSET_TEAMNUM, gameProcess) != READ<int>(localplayer + OFFSET_TEAMNUM, gameProcess))
+				teamNum = READ<int>(entAddress + OFFSET_TEAMNUM, gameProcess);
+				localTeamNum = READ<int>(localPlayerAddress + OFFSET_TEAMNUM, gameProcess);
+
+				if (teamNum != localTeamNum)
 				{
 
+					playerArray[j].xyz[1] = READ<float>(entAddress + OFFSET_XYZLOCATION, gameProcess);
+					playerArray[j].xyz[2] = READ<float>(entAddress + OFFSET_XYZLOCATION + 0X4, gameProcess);
+					playerArray[j].xyz[3] = READ<float>(entAddress + OFFSET_XYZLOCATION + 0X8, gameProcess);
 
-					//calcAngle(localplayer, entAddress, ViewAngles);					//will write later
-
-
-
-					if ((ViewAngles[1] > -90.0f) && (ViewAngles[1] < 90.0f))		// will change later
-					{
-
-						if ((ViewAngles[2] > -90.0f) && (ViewAngles[2] < 90.0f))	//will change later
-						{
-							playerArray[i] = entAddress;	// put in aray if it is good entity
-						}
-					}
+					j += 1;
 				}
 			}
+
+
+			i += 1;
 		}
-
-
-		//sort(playerArray);
-		//calcAngle(localplayer, playerArray[0], ViewAngles);
-		//Write<float>(localplayer + m_aimPunchAngle, ViewAngles, gameProcess);
+		
+		realNumOfPlayers = j;
 
 
 	}

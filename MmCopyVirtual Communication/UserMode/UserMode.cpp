@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <thread>
-
+#include <TlHelp32.h>
 using namespace std;
 
 
@@ -24,22 +24,54 @@ struct communicationStruct
 /*      COMMANDS/SIGNATURES FOR BUFFER      */    
 //0 for no command
 // 1 for test send
-//2 for RPM
-//3 for WPM
-//4 for test receive
+//2 for test RPM
+//3 for test WPM
+//4 for enable glow
+// 5 for toggle aimbot
+//6 for unload
 
 
 communicationStruct* sharedMem;
-/*      I have to create the pointer outside of CommandHandler() so i have an easy .data offset       */
+/*      I have to create the pointer outside of CommandHandler() so i have an easy .data offset   (DO NOT CHANGE)    */
 
+
+DWORD getProcId(const wchar_t* procName)
+{
+    DWORD procID = 0;
+    HANDLE hSnap = (CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0));
+    if (hSnap != INVALID_HANDLE_VALUE)
+    {
+        PROCESSENTRY32 procEntry;
+        procEntry.dwSize = sizeof(procEntry);
+        if (Process32First(hSnap, &procEntry))
+        {
+            do
+            {
+                if (!_wcsicmp(procEntry.szExeFile, procName))
+                {
+                    procID = procEntry.th32ProcessID;
+                    break;
+                }
+
+            } while (Process32Next(hSnap, &procEntry));
+        }
+    }
+    CloseHandle(hSnap);
+    return procID;
+}
 
 
 
 int command;
 int CommandHandler()
 {
+    cout << "started commandHandler " << endl;
+
+
     sharedMem = new communicationStruct();
     sharedMem->Signature = 1;
+
+
     while (1)
     {
         Sleep(1500);
@@ -53,12 +85,28 @@ int CommandHandler()
 
 
 
+    int apexProcessID;
+    while (1)
+    {
+        apexProcessID = getProcId(L"r5apex.exe");
+        if (apexProcessID != 0)
+        {
+            cout << "found process id of apex legends: " << apexProcessID << endl;
+            sharedMem->ProcessID = apexProcessID;
+            break;
+        }
+    }
+
+
+
+
+
     while (1)
     {
        
         std::cin >> command;
        
-
+        
         switch (command)
         {
 /*test*/    case 1: 
@@ -99,6 +147,8 @@ int CommandHandler()
 
             
             case 5:          // TOGGLE AIMBOT COMMAND
+
+                //for this, i cannot avoid synchronization
                 sharedMem->dataArrived = true;
                 sharedMem->Signature = command;
                 cout << "posted aimbot signal" << endl;
@@ -110,7 +160,7 @@ int CommandHandler()
                 sharedMem->dataArrived = true;
                 Sleep(4000);
                 delete sharedMem;
-                return;
+                return 0;
 
 
 
@@ -132,9 +182,17 @@ int CommandHandler()
 }
 
 
+void aimbotHandler()
+{
+    
+}
+
+
 
 int main()
 {
-    CommandHandler();
+    std::thread commandhandler(CommandHandler);
+    aimbotHandler();
+    commandhandler.join();
     return 0;
 }

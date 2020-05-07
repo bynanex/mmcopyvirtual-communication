@@ -117,7 +117,7 @@ BOOLEAN IsUnloadedDriverEntryEmpty(
 }
 
 UNICODE_STRING DriverName = RTL_CONSTANT_STRING(L"iqvw64e.sys");
-UNICODE_STRING NewDriverName = RTL_CONSTANT_STRING(L"bwrtyff.sys");
+UNICODE_STRING NewDriverName = RTL_CONSTANT_STRING(L"bzrtyff.sys");
 
 
 
@@ -147,7 +147,7 @@ BOOLEAN cleanUnloadedDriverString()
 	BOOLEAN cleared = FALSE;
 	BOOLEAN Filled = isMmUnloadedDriversFilled();
 
-
+	DbgPrint("about to clear mmunload\n");
 
 	for (ULONG Index = 0; Index < MM_UNLOADED_DRIVERS_SIZE; ++Index)
 	{
@@ -157,11 +157,18 @@ BOOLEAN cleanUnloadedDriverString()
 
 		if (RtlCompareUnicodeString(&DriverName, &Entry->Name, TRUE))
 		{
-			//random 7 letter name
-			RtlCopyUnicodeString(&Entry->Name, &NewDriverName);
-			Entry->UnloadTime = MmUnloadedDrivers[Index - 1].UnloadTime + 100;
+			if (Index == 0)
+			{
+				RtlZeroMemory(Entry, sizeof(MM_UNLOADED_DRIVER));
+			}
+			else
+			{
+				//random 7 letter name
+				RtlCopyUnicodeString(&Entry->Name, &NewDriverName);
+				Entry->UnloadTime = MmUnloadedDrivers[Index - 1].UnloadTime - 100;
 
-			DbgPrint("DONE randomizing name inside CleanUnloadedDriverString\n");
+				DbgPrint("DONE randomizing name inside CleanUnloadedDriverString\n");
+			}
 			return TRUE;
 		}
 	}

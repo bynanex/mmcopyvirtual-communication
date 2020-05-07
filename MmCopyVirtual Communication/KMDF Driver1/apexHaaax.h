@@ -75,7 +75,7 @@ public:
 	DWORD64		OFFSET_GLOW_DURATION = 0x2D0;
 	DWORD64		OFFSET_HEALTH = 0x3E0;
 	DWORD64		OFFSET_TEAMNUM = 0x999; // needs fix
-	DWORD64		OFFSET_VIEWANGLES = 12321; // needs fix
+	DWORD64		OFFSET_VIEWANGLES = 0x23D0;
 	DWORD64		OFFSET_XYZLOCATION = 12321; //NEEDS FIX
 
 
@@ -126,28 +126,34 @@ public:
 
 		KAPC_STATE apc;
 		KeStackAttachProcess(gameProcess, &apc);
+
+
+
+
+
 		BaseAddress = (ULONG64)GetUserModule(gameProcess, &programImage, isWow64); //BSOD problem line
 		DbgPrint("Base Address is: %p \n", BaseAddress);
 
 
 
 		/*--------------- IMPORTANT INFO: ppFound in Bbscansection is location of the beginning of the Sig !!! Add some bytes to get to pointer, add some bytes to get to offset*/
-
+		/*----------------scan entitylist here	--------------------------------------*/
 		ULONG64 Entity1 = NULL;
 		BBScanSection("safdah", EntityList_Sig, 0xCC, sizeof(EntityList_Sig) - 1, reinterpret_cast<PVOID*>(&Entity1), (PVOID64)BaseAddress);
 		KeDelayExecutionThread(KernelMode, FALSE, &Timeout);
-
-
-
 		OFFSET_ENTITYLIST = (ULONG64)ResolveRelativeAddress((PVOID)Entity1, 10, 14);
 		OFFSET_ENTITYLIST -= BaseAddress;
 		DbgPrint("Entitylist offset is: %i ", OFFSET_ENTITYLIST);
 
 
+
+
+
+
 		KeUnstackDetachProcess(&apc);
 
 
-		playerArray = (playerAimData*)ExAllocatePool(PagedPool, sizeof(sizeof(playerAimData) * 61)); // space for 61 ents
+		playerArray = (playerAimData*)ExAllocatePool(PagedPool, sizeof(playerAimData) * 61); // space for 61 ents
 
 
 

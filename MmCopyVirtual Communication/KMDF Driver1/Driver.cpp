@@ -97,7 +97,7 @@ void DriverLoop()
 	communicationStruct localBuffer;
 	localBuffer.Signature = 0;
 	KeDelayExecutionThread(KernelMode, FALSE, &interval);
-	interval.QuadPart = -10000;
+	interval.QuadPart = -7000000;	//0.7 seconds
 	int firstConnection = 1;
 	SIZE_T bytes;
 
@@ -127,11 +127,13 @@ void DriverLoop()
 
 
 
+
 	/*--		Check if Apex is open		--*/
+
 	while (1)
 	{
 		localBuffer = READ<communicationStruct>(structLocation, clientProcess);
-
+		KeDelayExecutionThread(KernelMode, TRUE, &interval);
 		if ((localBuffer.ProcessID != 0)		&&		(localBuffer.dataArrived == true))
 		{
 			DbgPrint("found r5apex process ID: %i\n", localBuffer.ProcessID);
@@ -139,7 +141,9 @@ void DriverLoop()
 		}
 	}
 	
-
+	LARGE_INTEGER delayTime;
+	delayTime.QuadPart = -20000000;		//2 seconds
+	KeDelayExecutionThread(KernelMode, TRUE, &delayTime);
 
 
 	apexHaaax haaax(1);

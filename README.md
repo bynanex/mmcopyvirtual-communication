@@ -23,6 +23,6 @@ then launch apex
 
 enter 4 to enable glow
 
-
+6 to unload
 
 

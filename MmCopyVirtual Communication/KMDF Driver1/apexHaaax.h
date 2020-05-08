@@ -9,7 +9,7 @@ struct playerAimData
 {
 	float xyz[3];
 	float viewAngles[2];
-	int teamNum;
+	int realNumOfPlayers;
 	bool dataArrived;
 	bool KernelDataArrived;
 };
@@ -60,7 +60,8 @@ HANDLE	GetProcessPIDapex()
 
 
 
-
+DWORD64 clientBaseAddress;
+PEPROCESS clientProcess;
 PEPROCESS	gameProcess;
 class apexHaaax
 {
@@ -92,6 +93,8 @@ public:
 		//Entitylist Sig		7F 24 B8 FE 3F 00 00 48 8D 15 ? ? ? ? 2B C1
 		//Localplayer Sig		48 8D 0D ? ? ? ? 48 8B D7 FF 50 58
 		UCHAR EntityList_Sig[] = "\x7F\x24\xB8\xFE\x3F\x00\x00\x48\x8D\x15\xCC\xCC\xCC\xCC\x2B\xC1";
+		UCHAR LocalPlayer_Sig[] = "\x48\x8D\x0D\xCC\xCC\xCC\xCC\x48\x8B\xD7\xFF\x50\x58";
+
 		LARGE_INTEGER Timeout;
 		Timeout.QuadPart = -10000000;
 		KeDelayExecutionThread(KernelMode, FALSE, &Timeout);
@@ -143,10 +146,16 @@ public:
 		KeDelayExecutionThread(KernelMode, FALSE, &Timeout);
 		OFFSET_ENTITYLIST = (ULONG64)ResolveRelativeAddress((PVOID)Entity1, 10, 14);
 		OFFSET_ENTITYLIST -= BaseAddress;
-		DbgPrint("Entitylist offset is: %i ", OFFSET_ENTITYLIST);
+		DbgPrint("Entitylist offset is: %p \n", OFFSET_ENTITYLIST);
 
 
-
+		/*----------------scan localplayer here-----------*/
+		ULONG localPlayerAddr = NULL;
+		BBScanSection("apexgay", EntityList_Sig, 0xCC, sizeof(LocalPlayer_Sig) - 1, reinterpret_cast<PVOID*>(&localPlayerAddr), (PVOID64)BaseAddress);
+		KeDelayExecutionThread(KernelMode, FALSE, &Timeout);
+		OFFSET_LOCALPLAYER = (ULONG64)ResolveRelativeAddress((PVOID)localPlayerAddr, 10, 14);
+		OFFSET_LOCALPLAYER -= BaseAddress;
+		DbgPrint("localplayer offset is: %p \n", OFFSET_LOCALPLAYER);
 
 
 
@@ -203,19 +212,15 @@ public:
 		// PEPROCESS should already be found
 		DWORD64 entAddress;
 
-		int i = 0;
-		int j = 0;
+		static int i = 0;
+		static int j = 0;
 		int health;
 		int teamNum;
 		int localTeamNum;
-		int realNumOfPlayers;
 		DWORD64 localPlayerAddress = READ<DWORD64>(BaseAddress + OFFSET_LOCALPLAYER, gameProcess);
-		
 
 
-		playerArray[61].xyz[1] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION, gameProcess);
-		playerArray[61].xyz[2] = READ<float>(localPlayerAddress	+ OFFSET_XYZLOCATION + 0X4, gameProcess);
-		playerArray[61].xyz[3] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION + 0X8, gameProcess);
+
 
 		while (i < 60)
 		{
@@ -232,9 +237,9 @@ public:
 				if (teamNum != localTeamNum)
 				{
 
-					playerArray[j].xyz[1] = READ<float>(entAddress + OFFSET_XYZLOCATION, gameProcess);
-					playerArray[j].xyz[2] = READ<float>(entAddress + OFFSET_XYZLOCATION + 0X4, gameProcess);
-					playerArray[j].xyz[3] = READ<float>(entAddress + OFFSET_XYZLOCATION + 0X8, gameProcess);
+					playerArray[j].xyz[0] = READ<float>(entAddress + OFFSET_XYZLOCATION, gameProcess);
+					playerArray[j].xyz[1] = READ<float>(entAddress + OFFSET_XYZLOCATION + 0X4, gameProcess);
+					playerArray[j].xyz[2] = READ<float>(entAddress + OFFSET_XYZLOCATION + 0X8, gameProcess);
 
 					j += 1;
 				}
@@ -243,10 +248,21 @@ public:
 
 			i += 1;
 		}
-		
-		realNumOfPlayers = j;
+
+		playerArray[0].realNumOfPlayers = j;
+		playerArray[0].dataArrived = 1;
+		playerArray[j + 1].xyz[0] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION, gameProcess);		//get localplayer locatin
+		playerArray[j + 1].xyz[1] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION + 0X4, gameProcess);
+		playerArray[j + 1].xyz[2] = READ<float>(localPlayerAddress + OFFSET_XYZLOCATION + 0X8, gameProcess);
+
+		//56D8 is playerArray Offset
+		DWORD	playerArrayAddress = READ<DWORD>(clientBaseAddress + 0x56D8, clientProcess);
 
 
+		for (int i = 0; i < j; ++i)
+		{
+			Write<playerAimData>(playerArrayAddress + i * sizeof(playerAimData), clientProcess);
+		}
 	}
 
 };			//			--------------------------------	CLASS END HERE		------------------------------------------------------

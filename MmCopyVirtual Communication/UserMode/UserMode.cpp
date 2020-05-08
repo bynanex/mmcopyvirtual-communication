@@ -32,7 +32,23 @@ struct communicationStruct
 
 
 communicationStruct* sharedMem;
-/*      I have to create the pointer outside of CommandHandler() so i have an easy .data offset   (DO NOT CHANGE)    */
+/*      I have to create the pointer outside of CommandHandler() so i have an easy .data offset 0x56C8  (DO NOT CHANGE)    */
+
+
+
+struct playerAimData
+{
+    float xyz[3];
+    float viewAngles[2];
+    int realNumOfPlayers;
+    bool dataArrived;
+    bool KernelDataArrived;
+};
+playerAimData* playerArray;   //61 players
+
+
+
+
 
 
 DWORD getProcId(const wchar_t* procName)
@@ -184,7 +200,17 @@ int CommandHandler()
 
 void aimbotHandler()
 {
-    
+    playerArray = new playerAimData[61];
+    //56D8 is playerArray Offset
+
+
+    while (1)
+    {
+        if (playerArray[0].dataArrived)
+        {
+
+        }
+    }
 }
 
 

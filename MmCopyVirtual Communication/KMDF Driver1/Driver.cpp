@@ -31,7 +31,8 @@ struct communicationStruct
 
 */
 
-PEPROCESS clientProcess;
+
+
 bool aimbotHasbeenTriggered;
 VOID DriverUnload()
 {
@@ -80,7 +81,6 @@ void DriverLoop()
 
 	/*		get base address		*/	
 	KAPC_STATE apc;
-	DWORD64 clientBaseAddress;
 	UNICODE_STRING processName;
 	RtlInitUnicodeString(&processName, L"UserModeClient.exe");
 	KeStackAttachProcess(clientProcess, &apc);
